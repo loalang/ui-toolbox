@@ -1,0 +1,50 @@
+---
+name: EmailInput
+route: /forms/email-input
+---
+
+import { useState } from "react";
+import { Playground } from "../../../Playground.tsx";
+import { EmailInput } from "./EmailInput.tsx";
+
+# EmailInput
+
+I am an input field for an email address.
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState("editme@example.com");
+    return <EmailInput value={value} onChange={setValue} />;
+  }}
+</Playground>
+
+I can have a placeholder text.
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState("");
+    return (
+      <EmailInput
+        placeholder="editme@example.com"
+        value={value}
+        onChange={setValue}
+      />
+    );
+  }}
+</Playground>
+
+I can be disabled.
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState("");
+    return (
+      <EmailInput
+        isDisabled
+        placeholder="I cannot be edited"
+        value={value}
+        onChange={setValue}
+      />
+    );
+  }}
+</Playground>

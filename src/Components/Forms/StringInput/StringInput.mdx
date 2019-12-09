@@ -1,0 +1,46 @@
+---
+name: StringInput
+route: /forms/string-input
+---
+
+import { useState } from "react";
+import { Playground } from "../../../Playground.tsx";
+import { StringInput } from "./StringInput.tsx";
+
+# StringInput
+
+I am a simple input field for text.
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState("Edit Me");
+    return <StringInput value={value} onChange={setValue} />;
+  }}
+</Playground>
+
+I can have a placeholder text.
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState("");
+    return (
+      <StringInput placeholder="Edit Me" value={value} onChange={setValue} />
+    );
+  }}
+</Playground>
+
+I can be disabled.
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState("");
+    return (
+      <StringInput
+        isDisabled
+        placeholder="I cannot be edited"
+        value={value}
+        onChange={setValue}
+      />
+    );
+  }}
+</Playground>

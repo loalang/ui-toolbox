@@ -1,0 +1,123 @@
+---
+name: Typography
+route: /typography
+---
+
+# Typography
+
+## Text Styles
+
+import { Playground } from "../../Playground.tsx";
+
+### Label
+
+import { Label } from "./TextStyle/Label.tsx";
+
+<Playground>
+  {() => (
+    <div>
+      <div>
+        <Label>Label – Used for small labels and tags</Label>
+      </div>
+      <hr />
+      <div style="width: 50px">
+        <Label>Multiline looks like this</Label>
+      </div>
+      <hr />
+      <div style="width: 50px">
+        <Label ellipsis>Or like this</Label>
+      </div>
+    </div>
+  )}
+</Playground>
+
+### Description
+
+import { Description } from "./TextStyle/Description.tsx";
+
+<Playground>
+  {() => (
+    <Description>
+      Description – A basic paragraph of text. Lorem ipsum dolor sit amet,
+      consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+      dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+      nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+      culpa qui officia deserunt mollit anim id est laborum.
+    </Description>
+  )}
+</Playground>
+
+### Body
+
+import { Body } from "./TextStyle/Body.tsx";
+
+<Playground>
+  {() => (
+    <Body>
+      Body – Easier on the eyes when reading a long paragraph. Lorem ipsum dolor
+      sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+      exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+      fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+      sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </Body>
+  )}
+</Playground>
+
+### HeroHeading
+
+import { HeroHeading } from "./TextStyle/HeroHeading.tsx";
+
+<Playground>
+  {() => <HeroHeading>The quick brown fox jumps over the lazy dog</HeroHeading>}
+</Playground>
+
+### PageHeading
+
+import { PageHeading } from "./TextStyle/PageHeading.tsx";
+
+<Playground>
+  {() => <PageHeading>The quick brown fox jumps over the lazy dog</PageHeading>}
+</Playground>
+
+import { AutoHeading } from "./AutoHeading.tsx";
+import { Heading } from "./Heading.tsx";
+import { Section } from "./Section.tsx";
+
+The heading level is set with the `Section` component.
+Instead of specifying a number in the source code, we use the tree
+structure of React's Virtual DOM to figure out what heading level we're at.
+
+<Playground>
+  {() => (
+    <div>
+      <Section>
+        <AutoHeading>This is a top level heading.</AutoHeading>
+        <Body>This is a top level body.</Body>
+        <Section>
+          <AutoHeading>This is a second level heading.</AutoHeading>
+          <Body>This is a second level body.</Body>
+          <Section>
+            <AutoHeading>This is a third level heading.</AutoHeading>
+            <Body>This is a third level body.</Body>
+          </Section>
+        </Section>
+        <Section>
+          <AutoHeading>This is a second level heading.</AutoHeading>
+          <Body>This is a second level body.</Body>
+          <Section>
+            <AutoHeading>This is a third level heading.</AutoHeading>
+            <Body>This is a third level body.</Body>
+          </Section>
+          <Section>
+            <AutoHeading>This is a third level heading.</AutoHeading>
+            <Body>This is a third level body.</Body>
+          </Section>
+        </Section>
+      </Section>
+    </div>
+  )}
+</Playground>

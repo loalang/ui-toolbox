@@ -1,0 +1,58 @@
+---
+name: TextInput
+route: /forms/text-input
+---
+
+import { useState } from "react";
+import { Playground } from "../../../Playground.tsx";
+import { TextInput } from "./TextInput.tsx";
+
+# TextInput
+
+I am an input field for multiline text, with hidden input.
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState("Edit Me");
+    return <TextInput value={value} onChange={setValue} />;
+  }}
+</Playground>
+
+I can have a placeholder text.
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState("");
+    return (
+      <TextInput placeholder="Edit Me" value={value} onChange={setValue} />
+    );
+  }}
+</Playground>
+
+I can have a minimum height, given through a minimum line count.
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState(
+      "I will always\ntake up at least three lines."
+    );
+    return <TextInput minLineCount={3} value={value} onChange={setValue} />;
+  }}
+</Playground>
+
+I can be disabled.
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState("");
+    return (
+      <TextInput
+        isDisabled
+        placeholder="I cannot be edited"
+        value={value}
+        onChange={setValue}
+        minLineCount={5}
+      />
+    );
+  }}
+</Playground>
