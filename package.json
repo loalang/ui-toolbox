@@ -1,5 +1,6 @@
 {
-  "name": "@loalang/ui",
+  "name": "@loalang/ui-toolbox",
+  "version": "0.0.0",
   "dependencies": {
     "docz": "^2.1.1",
     "emotion": "^10.0.23",
@@ -7,6 +8,10 @@
     "react-dom": "^16.12.0"
   },
   "scripts": {
-    "dev": "docz dev"
+    "dev": "docz dev",
+    "build": "tsc && node -e \"(() => { const {name, version, dependencies} = require('./package.json'), pkg = {name, version, dependencies}; require('fs').writeFileSync('dist/package.json', JSON.stringify(pkg, null, 2)) })()\""
+  },
+  "devDependencies": {
+    "typescript": "^3.7.3"
   }
 }
