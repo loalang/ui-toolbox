@@ -26,4 +26,4 @@ deploy:
     - cd dist
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
   script:
-    - yarn publish
+    - yarn publish --access public
