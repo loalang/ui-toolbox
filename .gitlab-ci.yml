@@ -20,7 +20,7 @@ build:
 
 deploy:
   only:
-    - tag
+    - tags
   stage: publish
   before_script:
     - cd dist
