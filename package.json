@@ -2,16 +2,17 @@
   "name": "@loalang/ui-toolbox",
   "version": "0.0.3",
   "dependencies": {
-    "docz": "^2.1.1",
-    "emotion": "^10.0.23",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "emotion": "^10.0.23"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0"
   },
   "scripts": {
     "dev": "docz dev",
-    "build": "tsc && node -e \"(() => { const {name, version, dependencies} = require('./package.json'), pkg = {name, version, dependencies}; require('fs').writeFileSync('dist/package.json', JSON.stringify(pkg, null, 2)) })()\""
+    "build": "tsc && node -e \"(() => { const {name, version, dependencies, peerDependencies} = require('./package.json'), pkg = {name, version, dependencies, peerDependencies}; require('fs').writeFileSync('dist/package.json', JSON.stringify(pkg, null, 2)) })()\""
   },
   "devDependencies": {
+    "docz": "^2.1.1",
     "typescript": "^3.7.3"
   }
 }
