@@ -1,6 +1,6 @@
 import React from "react";
 import { theme, useMenus, Link, ComponentsProvider } from "docz";
-import { Reset } from "../../../src/Reset";
+import { Reset } from "../../../src/Components/Reset";
 import { Heading } from "../../../src/Components/Typography/Heading";
 import { PageHeading } from "../../../src/Components/Typography/TextStyle/PageHeading";
 import { SectionHeading } from "../../../src/Components/Typography/TextStyle/SectionHeading";
