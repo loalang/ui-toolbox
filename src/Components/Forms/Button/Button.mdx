@@ -1,0 +1,93 @@
+---
+name: Button
+route: /forms/button
+---
+
+# Button
+
+import { Playground } from "../../../Playground.tsx";
+import { Button } from "./Button.tsx";
+
+I am a simple button. I am not supposed to solve every problem. I am just a button.
+
+<Playground>
+  {() => {
+    function onClick() {
+      alert("Thanks!");
+    }
+    return <Button onClick={onClick}>Click Me!</Button>;
+  }}
+</Playground>
+
+import { StringInput } from "../StringInput/StringInput.tsx";
+import { useState } from "react";
+
+I am built to have the same height as input fields, for a harmonious combination.
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState("");
+    function onClick() {
+      alert(`Value: ${value}`);
+    }
+    const style = {
+      display: "grid",
+      gridGap: "10px",
+      gridTemplateColumns: "1fr auto"
+    };
+    return (
+      <div style={style}>
+        <StringInput value={value} onChange={setValue} />
+        <Button onClick={onClick}>Submit</Button>
+      </div>
+    );
+  }}
+</Playground>
+
+Since I don't necessarily care what text is inside of me, I can easily be combined with
+another text style.
+
+import { Label } from "../../Typography/TextStyle/Label.tsx";
+
+<Playground>
+  {() => {
+    function onClick() {
+      alert("Thanks!");
+    }
+    return (
+      <Button onClick={onClick}>
+        <Label>I am small</Label>
+      </Button>
+    );
+  }}
+</Playground>
+
+I don't have many different variants – I keep it simple. Though, to satisfy a very common scenario
+of having one primary action and other secondary ones, I have one special prop: `primary`.
+
+import { SectionHeading } from "../../Typography/TextStyle/SectionHeading.tsx";
+
+<Playground>
+  {() => {
+    function onClick() {
+      alert("Got it!");
+    }
+    const style = {
+      display: "grid",
+      gridGap: "10px",
+      gridTemplateColumns: "auto auto 1fr",
+      marginTop: 20
+    };
+    return (
+      <div>
+        <SectionHeading>Are you sure?</SectionHeading>
+        <div style={style}>
+          <Button onClick={onClick}>Cancel</Button>
+          <Button onClick={onClick} primary>
+            Yes
+          </Button>
+        </div>
+      </div>
+    );
+  }}
+</Playground>
