@@ -9,11 +9,12 @@
   },
   "scripts": {
     "dev": "docz dev",
-    "build": "rm -rf dist && tsc && cp -r src/Components/Icons/eva dist/Icons && babel --presets @babel/react --plugins macros --out-dir dist dist && node -e \"(() => { const {name, version, dependencies, peerDependencies} = require('./package.json'), pkg = {name, version, dependencies, peerDependencies}; require('fs').writeFileSync('dist/package.json', JSON.stringify(pkg, null, 2)) })()\""
+    "build": "rm -rf dist && tsc && cp -r src/Components/Icons/eva dist/Icons && babel --presets @babel/react --plugins macros,@babel/transform-modules-commonjs --out-dir dist dist && rm -rf dist/Icons/eva && node -e \"(() => { const {name, version, dependencies, peerDependencies} = require('./package.json'), pkg = {name, version, dependencies, peerDependencies}; require('fs').writeFileSync('dist/package.json', JSON.stringify(pkg, null, 2)) })()\""
   },
   "devDependencies": {
     "@babel/cli": "^7.7.5",
     "@babel/core": "^7.7.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.7.5",
     "@babel/preset-react": "^7.7.4",
     "babel-plugin-macros": "^2.8.0",
     "docz": "^2.1.1",
