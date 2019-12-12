@@ -108,6 +108,7 @@ export function Reset({ children }: { children: ReactNode }) {
           color: inherit;
           text-decoration: inherit;
           background: inherit;
+          list-style: none;
         }
 
         body {

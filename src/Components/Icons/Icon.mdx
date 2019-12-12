@@ -1,0 +1,70 @@
+---
+name: Icon
+route: /icons/icon
+---
+
+# Icon
+
+I can display [Eva Icons](https://akveo.github.io/eva-icons/).
+
+import { Playground } from "../../Playground.tsx";
+import { Icon } from "./Icon.tsx";
+
+<Playground>{() => <Icon.Bulb />}</Playground>
+
+I can be filled, via a prop.
+
+import { useState } from "react";
+import { Button } from "../Forms/Button/Button.tsx";
+
+<Playground>
+  {() => {
+    const [isFilled, setIsFilled] = useState(false);
+    return (
+      <Button onClick={setIsFilled.bind(null, !isFilled)}>
+        <Icon.Heart filled={isFilled} />
+      </Button>
+    );
+  }}
+</Playground>
+
+I take the current text color.
+
+<Playground>
+  {() => {
+    const red = { color: "#ff0048" };
+    const yellow = { color: "#ee9d00" };
+    return (
+      <div>
+        <div style={red}>
+          I
+          <Icon.Heart filled />
+          Loa
+        </div>
+        <div style={yellow}>
+          I have an idea
+          <Icon.Bulb />
+        </div>
+      </div>
+    );
+  }}
+</Playground>
+
+I work well with text styles and button.
+
+import { Label } from "../Typography/TextStyle/Label.tsx";
+
+<Playground>
+  {() => {
+    function onClick() {
+      alert("Yay!");
+    }
+    return (
+      <Button primary onClick={onClick}>
+        <Label>
+          Click Me <Icon.Sun filled />
+        </Label>
+      </Button>
+    );
+  }}
+</Playground>
