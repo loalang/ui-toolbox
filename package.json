@@ -1,6 +1,6 @@
 {
   "name": "@loalang/ui-toolbox",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "dependencies": {
     "emotion": "^10.0.23"
   },
