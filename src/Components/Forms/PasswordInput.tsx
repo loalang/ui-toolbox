@@ -1,7 +1,7 @@
 import React from "react";
-import { BaseInput, BaseInputProps } from "../BaseInput/BaseInput";
+import { BaseInput, BaseInputProps } from "./BaseInput";
 
-export function StringInput({
+export function PasswordInput({
   value,
   onChange,
   ...baseProps
@@ -13,10 +13,10 @@ export function StringInput({
     <BaseInput showsPlaceholder={value === ""} {...baseProps}>
       {p => (
         <input
-          type="text"
+          type="password"
           value={value}
           onChange={e => onChange(e.target.value)}
-          spellCheck={true}
+          spellCheck={false}
           {...p}
         />
       )}

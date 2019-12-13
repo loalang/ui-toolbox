@@ -1,0 +1,33 @@
+---
+name: BooleanInput
+route: /forms/boolean-input
+---
+
+# BooleanInput
+
+import { Playground } from "../../Playground.tsx";
+import { BooleanInput } from "./BooleanInput.tsx";
+import { useState } from "react";
+import { Label } from "../Typography/TextStyle/Label.tsx";
+
+I allow changing a boolean value.
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState(false);
+    return <BooleanInput value={value} onChange={setValue} />;
+  }}
+</Playground>
+
+I can have a label, which can be customized with text style.
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState(false);
+    return (
+      <BooleanInput value={value} onChange={setValue}>
+        <Label>Do you agree?</Label>
+      </BooleanInput>
+    );
+  }}
+</Playground>

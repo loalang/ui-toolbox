@@ -9,8 +9,9 @@ export function Label({
   ellipsis?: boolean;
 }) {
   return (
-    <div
+    <span
       className={css`
+        display: block;
         background: transparent;
         font-size: 10px;
         line-height: 1.1;
@@ -31,6 +32,6 @@ export function Label({
       `}
     >
       {children}
-    </div>
+    </span>
   );
 }

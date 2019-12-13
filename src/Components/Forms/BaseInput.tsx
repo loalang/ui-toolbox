@@ -34,7 +34,7 @@ export function BaseInput({
               left: 7px;
               top: 5px;
               pointer-events: none;
-              color: ${isDisabled ? "#11111140" : "#1111ff40"};
+              color: ${isDisabled ? "#11111140" : "rgba(0, 0, 214, 0.5)"};
               font-size: 16px;
               line-height: 1.1;
               z-index: 1;

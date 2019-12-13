@@ -1,0 +1,64 @@
+---
+name: Search
+route: /search/search
+---
+
+# Search
+
+import { Playground } from "../../Playground.tsx";
+import { Search } from "./Search.tsx";
+import { BooleanInput } from "../Forms/BooleanInput.tsx";
+import { useState } from "react";
+
+<Playground>
+  {() => {
+    const [onBlue, setOnBlue] = useState(false);
+    const [term, setTerm] = useState("");
+    const results = [
+      {
+        id: 1,
+        name: "Hello",
+        description: "This is a description of this item."
+      },
+      { id: 2, name: "Hey" },
+      { id: 3, name: "Awesome", description: "I also have a description" },
+      { id: 4, name: "Away we go" },
+      {
+        id: 5,
+        name: "Want to do something?",
+        label: "Thing",
+        description: "I have both a description and a label"
+      },
+      { id: 6, name: "Look at me!" }
+    ];
+    function onClick(item) {
+      alert(`Clicked ${JSON.stringify(item)}`);
+    }
+    const style = {
+      background: onBlue ? "#1111ff" : "transparent",
+      marginBottom: 12,
+      padding: 10
+    };
+    return (
+      <div style={style}>
+        <div style={style}>
+          <BooleanInput value={onBlue} onChange={setOnBlue}>
+            On blue
+          </BooleanInput>
+        </div>
+        <Search
+          placeholder="Search for anything..."
+          translucent={onBlue}
+          term={term}
+          onChange={setTerm}
+          results={results
+            .filter(result =>
+              result.name.toLowerCase().includes(term.toLowerCase())
+            )
+            .map(r => ({ ...r, highlights: [term.toLowerCase()] }))}
+          onClick={onClick}
+        />
+      </div>
+    );
+  }}
+</Playground>

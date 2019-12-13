@@ -5,6 +5,7 @@ export function PageHeading({ children }: { children: ReactNode }) {
   return (
     <span
       className={css`
+        display: block;
         background: transparent;
         font-size: 30px;
         font-weight: 600;

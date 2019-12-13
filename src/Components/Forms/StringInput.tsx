@@ -1,8 +1,7 @@
 import React from "react";
-import { BaseInput, BaseInputProps } from "../BaseInput/BaseInput";
-import { css, cx } from "emotion";
+import { BaseInput, BaseInputProps } from "./BaseInput";
 
-export function EmailInput({
+export function StringInput({
   value,
   onChange,
   ...baseProps
@@ -14,10 +13,10 @@ export function EmailInput({
     <BaseInput showsPlaceholder={value === ""} {...baseProps}>
       {p => (
         <input
-          type="email"
+          type="text"
           value={value}
           onChange={e => onChange(e.target.value)}
-          spellCheck={false}
+          spellCheck={true}
           {...p}
         />
       )}

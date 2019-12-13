@@ -113,7 +113,7 @@ export function Reset({ children }: { children: ReactNode }) {
 
         body {
           font-family: "IBM Plex Sans", sans-serif;
-          background: #f9f9f9;
+          background: #ffffff;
           width: 100%;
         }
       `}</style>

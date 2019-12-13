@@ -3,8 +3,9 @@ import { css } from "emotion";
 
 export function SectionHeading({ children }: { children: ReactNode }) {
   return (
-    <div
+    <span
       className={css`
+        display: block;
         background: transparent;
         font-size: 20px;
         font-weight: 600;
@@ -12,6 +13,6 @@ export function SectionHeading({ children }: { children: ReactNode }) {
       `}
     >
       {children}
-    </div>
+    </span>
   );
 }

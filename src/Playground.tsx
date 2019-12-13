@@ -72,6 +72,7 @@ export function Playground({
           border-top: 0;
           border-bottom-left-radius: 4px;
           border-bottom-right-radius: 4px;
+          background: #f9f9f9;
         `}
       >
         <Children />

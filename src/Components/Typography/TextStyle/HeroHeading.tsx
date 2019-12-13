@@ -3,14 +3,15 @@ import { css } from "emotion";
 
 export function HeroHeading({ children }: { children: ReactNode }) {
   return (
-    <div
+    <span
       className={css`
+        display: block;
         background: transparent;
         font-size: 42px;
         line-height: 43px;
       `}
     >
       {children}
-    </div>
+    </span>
   );
 }

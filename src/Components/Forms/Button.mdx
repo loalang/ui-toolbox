@@ -5,7 +5,7 @@ route: /forms/button
 
 # Button
 
-import { Playground } from "../../../Playground.tsx";
+import { Playground } from "../../Playground.tsx";
 import { Button } from "./Button.tsx";
 
 I am a simple button. I am not supposed to solve every problem. I am just a button.
@@ -19,7 +19,7 @@ I am a simple button. I am not supposed to solve every problem. I am just a butt
   }}
 </Playground>
 
-import { StringInput } from "../StringInput/StringInput.tsx";
+import { StringInput } from "./StringInput.tsx";
 import { useState } from "react";
 
 I am built to have the same height as input fields, for a harmonious combination.
@@ -47,7 +47,7 @@ I am built to have the same height as input fields, for a harmonious combination
 Since I don't necessarily care what text is inside of me, I can easily be combined with
 another text style.
 
-import { Label } from "../../Typography/TextStyle/Label.tsx";
+import { Label } from "../Typography/TextStyle/Label.tsx";
 
 <Playground>
   {() => {
@@ -65,7 +65,7 @@ import { Label } from "../../Typography/TextStyle/Label.tsx";
 I don't have many different variants – I keep it simple. Though, to satisfy a very common scenario
 of having one primary action and other secondary ones, I have one special prop: `primary`.
 
-import { SectionHeading } from "../../Typography/TextStyle/SectionHeading.tsx";
+import { SectionHeading } from "../Typography/TextStyle/SectionHeading.tsx";
 
 <Playground>
   {() => {

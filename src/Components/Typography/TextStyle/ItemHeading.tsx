@@ -1,14 +1,15 @@
 import React, { ReactNode } from "react";
 import { css } from "emotion";
 
-export function Description({ children }: { children: ReactNode }) {
+export function ItemHeading({ children }: { children: ReactNode }) {
   return (
     <span
       className={css`
         display: block;
         background: transparent;
-        font-size: 15px;
-        line-height: 20px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 21px;
       `}
     >
       {children}

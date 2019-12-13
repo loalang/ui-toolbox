@@ -1,5 +1,5 @@
 import React, { useRef, useLayoutEffect } from "react";
-import { BaseInput, BaseInputProps } from "../BaseInput/BaseInput";
+import { BaseInput, BaseInputProps } from "./BaseInput";
 import { cx, css } from "emotion";
 
 export function TextInput({
@@ -47,7 +47,7 @@ export function TextInput({
               css`
                 position: absolute;
                 white-space: pre-line;
-                left: -99999999px;
+                top: -99999999px;
               `
             )}
           >
