@@ -10,9 +10,11 @@ const {
   HeartOutline,
   Sun,
   SunOutline,
-  ChevronRight
+  ChevronRight,
+  Link2,
+  ArrowForward
 } = toReactComponent(
-  "./eva/{bulb,bulb-outline,heart,heart-outline,sun,sun-outline,chevron-right}.svg",
+  "./eva/{bulb,bulb-outline,heart,heart-outline,sun,sun-outline,chevron-right,link-2,arrow-forward}.svg",
   {
     icon: true,
     replaceAttrValues: ["#000000=currentColor"],
@@ -24,7 +26,9 @@ export const Icon = {
   Bulb: makeIconComponent("bulb", Bulb, BulbOutline),
   Heart: makeIconComponent("heart", Heart, HeartOutline),
   Sun: makeIconComponent("sun", Sun, SunOutline),
-  ChevronRight: makeIconComponent("chevron-right", ChevronRight, ChevronRight)
+  ChevronRight: makeIconComponent("chevron-right", ChevronRight, ChevronRight),
+  Link: makeIconComponent("link", Link2, Link2),
+  ArrowForward: makeIconComponent("arrow-forward", ArrowForward, ArrowForward)
 };
 
 export interface IconProps {
