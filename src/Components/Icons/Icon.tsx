@@ -12,13 +12,21 @@ const {
   SunOutline,
   ChevronRight,
   Link2,
-  ArrowForward
+  ArrowForward,
+  FileText,
+  FileTextOutline,
+  Person,
+  PersonOutline,
+  Edit,
+  EditOutline,
+  Code,
+  CodeOutline
 } = toReactComponent(
-  "./eva/{bulb,bulb-outline,heart,heart-outline,sun,sun-outline,chevron-right,link-2,arrow-forward}.svg",
+  "./eva/{bulb,bulb-outline,heart,heart-outline,sun,sun-outline,chevron-right,link-2,arrow-forward,file-text-outline,file-text,person,person-outline,edit,edit-outline,code,code-outline}.svg",
   {
     icon: true,
     replaceAttrValues: ["#000000=currentColor"],
-    svgo: false
+    svgo: process.env.NODE_ENV === "production"
   }
 );
 
@@ -28,7 +36,11 @@ export const Icon = {
   Sun: makeIconComponent("sun", Sun, SunOutline),
   ChevronRight: makeIconComponent("chevron-right", ChevronRight, ChevronRight),
   Link: makeIconComponent("link", Link2, Link2),
-  ArrowForward: makeIconComponent("arrow-forward", ArrowForward, ArrowForward)
+  ArrowForward: makeIconComponent("arrow-forward", ArrowForward, ArrowForward),
+  FileText: makeIconComponent("file-text", FileText, FileTextOutline),
+  Person: makeIconComponent("person", Person, PersonOutline),
+  Edit: makeIconComponent("edit", Edit, EditOutline),
+  Code: makeIconComponent("code", Code, CodeOutline)
 };
 
 export interface IconProps {

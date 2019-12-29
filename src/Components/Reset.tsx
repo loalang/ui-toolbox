@@ -115,6 +115,8 @@ export function Reset({ children }: { children: ReactNode }) {
           font-family: "IBM Plex Sans", sans-serif;
           background: #ffffff;
           width: 100%;
+
+          -webkit-text-size-adjust: none;
         }
       `}</style>
       {children}

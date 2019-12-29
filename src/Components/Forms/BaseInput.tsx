@@ -46,6 +46,7 @@ export function BaseInput({
         "aria-placeholder": placeholder,
         disabled: isDisabled,
         className: css`
+          appearance: none;
           display: block;
           font-size: 16px;
           line-height: 1.1;
@@ -53,6 +54,7 @@ export function BaseInput({
           border: 2px solid transparent;
           border-radius: 4px;
           width: 100%;
+          height: 27px;
           box-sizing: border-box;
           background: ${isDisabled ? "#fafafa" : "#fff"};
           box-shadow: 0 1px 4px #00000010, 0 1px 2px #00000010;
