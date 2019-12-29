@@ -38,6 +38,11 @@ export function BaseInput({
               font-size: 16px;
               line-height: 1.1;
               z-index: 1;
+
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              width: calc(100% - 14px);
             }
           `}
       `}

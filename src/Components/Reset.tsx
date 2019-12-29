@@ -117,6 +117,9 @@ export function Reset({ children }: { children: ReactNode }) {
           width: 100%;
 
           -webkit-text-size-adjust: none;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-tap-highlight-color: transparent;
         }
       `}</style>
       {children}
