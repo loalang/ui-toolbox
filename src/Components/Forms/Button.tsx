@@ -4,14 +4,17 @@ import { css } from "emotion";
 export function Button({
   children,
   onClick,
-  primary = false
+  primary = false,
+  isDisabled = false
 }: {
   children: ReactNode;
   onClick: () => void;
   primary?: boolean;
+  isDisabled?: boolean;
 }) {
   return (
     <button
+      disabled={isDisabled}
       className={css`
         color: ${primary ? "#1111ff" : "#000"};
         background: ${primary ? "#1111ff15" : "#1111ff05"};
@@ -21,6 +24,7 @@ export function Button({
         border: 2px solid transparent;
         border-radius: 4px;
         box-shadow: 0 1px 4px #1111ff20, 0 1px 2px #1111ff20;
+        opacity: ${isDisabled ? 0.8 : 1};
 
         &:focus {
           outline: 0;

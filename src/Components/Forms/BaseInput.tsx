@@ -8,10 +8,8 @@ export interface InputProps {
 }
 
 export interface BaseInputProps {
-  showsPlaceholder?: boolean;
   placeholder?: string;
   isDisabled?: boolean;
-  children: (props: InputProps) => ReactElement;
 }
 
 export function BaseInput({
@@ -19,7 +17,10 @@ export function BaseInput({
   placeholder,
   isDisabled = false,
   children
-}: BaseInputProps) {
+}: BaseInputProps & {
+  children: (props: InputProps) => ReactElement;
+  showsPlaceholder?: boolean;
+}) {
   return (
     <div
       className={css`

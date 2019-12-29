@@ -1,6 +1,5 @@
 import React from "react";
 import { BaseInput, BaseInputProps } from "./BaseInput";
-import { css, cx } from "emotion";
 
 export function EmailInput({
   value,

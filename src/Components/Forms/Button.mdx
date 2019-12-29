@@ -91,3 +91,18 @@ import { SectionHeading } from "../Typography/TextStyle/SectionHeading.tsx";
     );
   }}
 </Playground>
+
+I can be disabled.
+
+<Playground>
+  {() => {
+    function onClick() {
+      alert("Can't do it!");
+    }
+    return (
+      <Button onClick={onClick} isDisabled>
+        Click Me
+      </Button>
+    );
+  }}
+</Playground>
