@@ -1,6 +1,7 @@
 import React, { ReactElement, useState } from "react";
 import { css } from "emotion";
 import { Label } from "./Components/Typography/TextStyle/Label";
+import { Code } from "./Components/Code/Code";
 
 export function Playground({
   children: Children,
@@ -37,31 +38,12 @@ export function Playground({
       {isExpanded && (
         <div
           className={css`
-            position: relative;
-            width: 100%;
+            border: 2px solid #1111ff20;
           `}
         >
-          <pre
-            className={css`
-              position: relative;
-              overflow: auto;
-              border: 2px solid #1111ff20;
-              border-top: 0;
-            `}
-          >
-            <code
-              className={css`
-                font-family: "IBM Plex Mono", monospace;
-                line-height: 1.2;
-                font-size: 13px;
-                padding: 10px;
-                display: block;
-                background: transparent;
-              `}
-            >
-              {formatCode(__code)}
-            </code>
-          </pre>
+          <Code block language="javascript">
+            {formatCode(__code)}
+          </Code>
         </div>
       )}
       <div

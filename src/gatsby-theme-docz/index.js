@@ -5,6 +5,7 @@ import { Heading } from "../../../src/Components/Typography/Heading";
 import { PageHeading } from "../../../src/Components/Typography/TextStyle/PageHeading";
 import { SectionHeading } from "../../../src/Components/Typography/TextStyle/SectionHeading";
 import { Body } from "../../../src/Components/Typography/TextStyle/Body";
+import { Code } from "../../../src/Components/Code/Code";
 import { css } from "emotion";
 
 function withMargin(margin) {
@@ -25,50 +26,53 @@ function withMargin(margin) {
 function Theme({ children }) {
   return (
     <Reset>
-      <ComponentsProvider
-        components={{
-          h1: withMargin({ top: 40, bottom: 20 })(p => (
-            <Heading level={1}>
-              <PageHeading {...p} />
-            </Heading>
-          )),
-          h2: withMargin(20)(p => (
-            <Heading level={2}>
-              <SectionHeading {...p} />
-            </Heading>
-          )),
-          h3: withMargin(10)(p => (
-            <Heading level={3}>
-              <SectionHeading {...p} />
-            </Heading>
-          )),
-          p: withMargin(10)(Body)
-        }}
-      >
-        <div
-          className={css`
-            width: 100%;
-            display: flex;
-          `}
+      <React.Suspense fallback="Loading...">
+        <ComponentsProvider
+          components={{
+            h1: withMargin({ top: 40, bottom: 20 })(p => (
+              <Heading level={1}>
+                <PageHeading {...p} />
+              </Heading>
+            )),
+            h2: withMargin(20)(p => (
+              <Heading level={2}>
+                <SectionHeading {...p} />
+              </Heading>
+            )),
+            h3: withMargin(10)(p => (
+              <Heading level={3}>
+                <SectionHeading {...p} />
+              </Heading>
+            )),
+            p: withMargin(10)(Body),
+            code: Code
+          }}
         >
           <div
             className={css`
-              flex: 0 0 200px;
-            `}
-          >
-            <Menu />
-          </div>
-          <div
-            className={css`
-              flex: 1 1 calc(100% - 200px);
-              padding: 20px;
               width: 100%;
+              display: flex;
             `}
           >
-            {children}
+            <div
+              className={css`
+                flex: 0 0 200px;
+              `}
+            >
+              <Menu />
+            </div>
+            <div
+              className={css`
+                flex: 1 1 calc(100% - 200px);
+                padding: 20px;
+                width: 100%;
+              `}
+            >
+              {children}
+            </div>
           </div>
-        </div>
-      </ComponentsProvider>
+        </ComponentsProvider>
+      </React.Suspense>
     </Reset>
   );
 }

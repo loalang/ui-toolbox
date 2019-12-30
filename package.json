@@ -2,20 +2,23 @@
   "name": "@loalang/ui-toolbox",
   "version": "0.1.4",
   "dependencies": {
-    "emotion": "^10.0.23"
+    "emotion": "^10.0.23",
+    "highlight.js": "^9.17.1"
   },
   "peerDependencies": {
     "react": "^16.12.0"
   },
   "scripts": {
     "dev": "docz dev",
-    "build": "rm -rf dist && tsc && cp -r src/Components/Icons/eva dist/Icons && cp src/Components/Icons/Logo.svg dist/Icons && babel --presets @babel/react --plugins macros,@babel/transform-modules-commonjs --out-dir dist dist && rm -rf dist/Icons/eva dist/Icons/Logo.svg && node -e \"(() => { const {name, version, dependencies, peerDependencies} = require('./package.json'), pkg = {name, version, dependencies, peerDependencies}; require('fs').writeFileSync('dist/package.json', JSON.stringify(pkg, null, 2)) })()\""
+    "build": "rm -rf dist && tsc && cp -r src/Components/Icons/eva dist/Icons && cp src/Components/Icons/Logo.svg dist/Icons && babel --presets @babel/react --plugins macros,@babel/transform-modules-commonjs,@babel/syntax-dynamic-import --out-dir dist dist && rm -rf dist/Icons/eva dist/Icons/Logo.svg && node -e \"(() => { const {name, version, dependencies, peerDependencies} = require('./package.json'), pkg = {name, version, dependencies, peerDependencies}; require('fs').writeFileSync('dist/package.json', JSON.stringify(pkg, null, 2)) })()\""
   },
   "devDependencies": {
     "@babel/cli": "^7.7.5",
     "@babel/core": "^7.7.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.7.4",
     "@babel/plugin-transform-modules-commonjs": "^7.7.5",
     "@babel/preset-react": "^7.7.4",
+    "@types/highlight.js": "^9.12.3",
     "babel-plugin-macros": "^2.8.0",
     "docz": "^2.1.1",
     "react": "^16.12.0",

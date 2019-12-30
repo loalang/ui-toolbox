@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2019",
     "jsx": "react-native",
-    "module": "es2015",
+    "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
     "esModuleInterop": true,

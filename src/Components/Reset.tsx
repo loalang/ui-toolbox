@@ -10,8 +10,8 @@ export function Reset({ children }: { children: ReactNode }) {
     >
       <style>{`
         @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600&display=swap");
-        @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400&display=swap");
-        @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400&display=swap");
+        @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,600,400i&display=swap");
+        @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,600,400i&display=swap");
 
         div,
         span,

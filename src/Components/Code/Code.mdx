@@ -1,0 +1,97 @@
+---
+name: Code
+route: /code
+---
+
+# Code
+
+We need to display a lot of code throughout our tools, and sometimes we even need to edit it.
+
+The basic thing is to display any text formatted as code.
+
+import { Playground } from "../../Playground.tsx";
+import { Code } from "./Code.tsx";
+
+<Playground>{() => <Code>This is code.</Code>}</Playground>
+
+Sometimes, lines get long and viewports get narrow.
+
+<Playground>
+  {() => (
+    <Code>
+      {
+        "This is the first line.\nThis is the second line, and this one is terribly long and annoying to fit in the viewport, so we're going to have to handle that somehow.\nThis is the third line."
+      }
+    </Code>
+  )}
+</Playground>
+
+Whether the code snippet is inline or block is automatically determined using the line count. However, this can be forced by passing a boolean as the `block` prop.
+
+<Playground>
+  {() => <Code block>This is short code made block.</Code>}
+</Playground>
+
+The container styling can be stipped by passing the `raw` prop.
+
+<Playground>
+  {() => (
+    <Code raw block>
+      This is a raw code block.
+    </Code>
+  )}
+</Playground>
+
+The code can be highlighted by passing in a language.
+
+<Playground>
+  {() => (
+    <Code language="javascript">
+      {'if (you.isHappy && you.knows("it")) {\n  you.hands.clap();\n}'}
+    </Code>
+  )}
+</Playground>
+
+Because the highlight feature is enabled explicitly in the same component handling inline/block semantics, we can easily get highlighted inline code snippets.
+
+<Playground>
+  {() => (
+    <p>
+      Here is some code:{" "}
+      <Code language="javascript">{'new Uint8Array([1, 2, 3]).join(".")'}</Code>.
+      Awesome, right?
+    </p>
+  )}
+</Playground>
+
+It works with Java and Shell.
+
+<Playground>
+  {() => (
+    <div>
+      <Code language="java">{`package my.pkg;
+      
+public class MyClass {
+    public static void main() {
+        System.out.println("Hello World");
+    }
+}`}</Code>
+      <p>
+        Compile with <Code language="shell">javac $FILE_NAME</Code> and run with{" "}
+        <Code language="shell">{"java $CLASS_NAME | awk '{ print $1 }'"}</Code>.
+      </p>
+    </div>
+  )}
+</Playground>
+
+And of course, it works with Loa.
+
+<Playground>
+  {() => (
+    <Code language="loa">{`namespace MyApp.
+  
+class Employee {
+  is Person.
+}`}</Code>
+  )}
+</Playground>
