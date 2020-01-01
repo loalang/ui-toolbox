@@ -1,0 +1,191 @@
+---
+name: Form
+route: /forms/form
+---
+
+import { Playground } from "../../Playground.tsx";
+import { useState } from "react";
+import { Form } from "./Form.tsx";
+import { StringInput } from "./StringInput.tsx";
+import { Code } from "../Code/Code.tsx";
+
+# Form
+
+I represent the composite behaviour of a form with inputs, making the orchestration
+of controlling all those inputs easier.
+
+The basic use case looks like this:
+
+<Playground>
+  {() => {
+    const [value, onChange] = useState({ field: "Change Me!" });
+    return (
+      <div>
+        <Form value={value} onChange={onChange}>
+          <Form.Input field="field">
+            {({ value, onChange }) => (
+              <StringInput value={value} onChange={onChange} />
+            )}
+          </Form.Input>
+        </Form>
+        <Code language="json">{JSON.stringify(value, null, 2)}</Code>
+      </div>
+    );
+  }}
+</Playground>
+
+Since the `Form` itself exposes the same props as inputs (`value`, `onChange`, and `errors`), it's intuitive
+how to implement nested objects in the form data.
+
+<Playground>
+  {() => {
+    const [value, onChange] = useState({
+      person: { name: "Jane Doe" },
+      address: { street: "1st Street" }
+    });
+    return (
+      <div>
+        <Form value={value} onChange={onChange}>
+          <Form.Input field="person">
+            {({ value, onChange }) => (
+              <Form value={value} onChange={onChange}>
+                <Form.Input field="name">
+                  {({ value, onChange }) => (
+                    <StringInput value={value} onChange={onChange} />
+                  )}
+                </Form.Input>
+              </Form>
+            )}
+          </Form.Input>
+          <Form.Input field="address">
+            {({ value, onChange }) => (
+              <Form value={value} onChange={onChange}>
+                <Form.Input field="street">
+                  {({ value, onChange }) => (
+                    <StringInput value={value} onChange={onChange} />
+                  )}
+                </Form.Input>
+              </Form>
+            )}
+          </Form.Input>
+        </Form>
+        <Code language="json">{JSON.stringify(value, null, 2)}</Code>
+      </div>
+    );
+  }}
+</Playground>
+
+If the `onSubmit` prop is passed to `Form`, then pressing enter within a form input is enabled, as per
+usual browser behaviour.
+
+<Playground>
+  {() => {
+    const [value, onChange] = useState({ field: "Change Me!" });
+    function onSubmit(value) {
+      alert(JSON.stringify(value, null, 2));
+    }
+    return (
+      <div>
+        <Form value={value} onChange={onChange} onSubmit={onSubmit}>
+          <Form.Input field="field">
+            {({ value, onChange }) => (
+              <StringInput value={value} onChange={onChange} />
+            )}
+          </Form.Input>
+        </Form>
+      </div>
+    );
+  }}
+</Playground>
+
+The form accepts an `errors` prop, which consists of errors for each field in the form data.
+This will simply be passed on the the corresponding field.
+
+<Playground>
+  {() => {
+    const [value, onChange] = useState({ field: "Change Me!" });
+    const errors = {
+      field: value.field === "Change Me!" ? ["This field must be changed"] : []
+    };
+    return (
+      <div>
+        <Form value={value} onChange={onChange} errors={errors}>
+          <Form.Input field="field">
+            {({ value, onChange, errors }) => (
+              <div>
+                <Form.Errors errors={errors}>
+                  <StringInput value={value} onChange={onChange} />
+                </Form.Errors>
+              </div>
+            )}
+          </Form.Input>
+        </Form>
+        <Code language="json">{JSON.stringify(value, null, 2)}</Code>
+      </div>
+    );
+  }}
+</Playground>
+
+Nested errors can be passed along to the inner form, or displayed as the "error list" for the
+inner form (acting like a composite input field).
+
+<Playground>
+  {() => {
+    const [value, onChange] = useState({ inner: { innerField: "Change Me!" } });
+    const errors = {
+      inner: {
+        innerField: [
+          value.inner.innerField === "Change Me!"
+            ? "This field must be changed"
+            : null,
+          /[A-Z]/.test(value.inner.innerField)
+            ? "Must not contain any uppercase letters"
+            : null
+        ]
+      }
+    };
+    return (
+      <div>
+        <Form value={value} onChange={onChange} errors={errors}>
+          <Form.Input field="inner">
+            {({ value, onChange, errors }) => (
+              <Form value={value} onChange={onChange} errors={errors}>
+                <Form.Input field="innerField">
+                  {({ value, onChange, errors }) => (
+                    <div>
+                      <Form.Errors errors={errors}>
+                        <StringInput value={value} onChange={onChange} />
+                      </Form.Errors>
+                    </div>
+                  )}
+                </Form.Input>
+              </Form>
+            )}
+          </Form.Input>
+        </Form>
+        <Form value={value} onChange={onChange} errors={errors}>
+          <Form.Input field="inner">
+            {({ value, onChange, errors }) => (
+              <div>
+                <Form.Errors errors={errors}>
+                  <Form value={value} onChange={onChange}>
+                    <Form.Input field="innerField">
+                      {({ value, onChange, errors }) => (
+                        <div>
+                          <Form.Errors errors={errors}>
+                            <StringInput value={value} onChange={onChange} />
+                          </Form.Errors>
+                        </div>
+                      )}
+                    </Form.Input>
+                  </Form>
+                </Form.Errors>
+              </div>
+            )}
+          </Form.Input>
+        </Form>
+        <Code language="json">{JSON.stringify(value, null, 2)}</Code>
+      </div>
+    );
+  }}
+</Playground>

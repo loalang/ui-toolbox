@@ -7,10 +7,12 @@ const hljs: typeof hljsTypes = require("highlight.js/lib");
 type Language = (hljs?: hljsTypes.HLJSStatic) => hljsTypes.IModeBase;
 
 const languageJavaScript: Language = require("highlight.js/lib/languages/javascript");
+const languageJSON: Language = require("highlight.js/lib/languages/json");
 const languageJava: Language = require("highlight.js/lib/languages/java");
 const languageShell: Language = require("highlight.js/lib/languages/bash");
 
 hljs.registerLanguage("javascript", languageJavaScript);
+hljs.registerLanguage("json", languageJSON);
 hljs.registerLanguage("java", languageJava);
 hljs.registerLanguage("shell", languageShell);
 hljs.registerLanguage("loa", languageLoa);
