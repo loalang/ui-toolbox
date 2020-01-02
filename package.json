@@ -1,6 +1,6 @@
 {
   "name": "@loalang/ui-toolbox",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "dependencies": {
     "emotion": "^10.0.23",
     "highlight.js": "^9.17.1"
