@@ -23,8 +23,11 @@ export interface InputProps<T> {
 export interface ArrayProps<A extends any[]> {
   items: ArrayItemProps<A[number]>[];
   push(item: A[number]): void;
-  update(index: number, value: A[number]): void;
   pop(): void;
+  unshift(item: A[number]): void;
+  shift(): void;
+  insert(index: number, value: A[number]): void;
+  update(index: number, value: A[number]): void;
   remove(index: number): void;
   slice(start: number, end?: number): void;
   splice(index: number, deleteCount: number, ...newItems: A[number][]): void;
@@ -131,15 +134,12 @@ export function Form<T>({
   );
 }
 
-Form.Input = function Input<
-  T extends { [x: string]: any | any[] },
-  K extends keyof ArrayFieldsOf<T>
->({
+Form.Input = function Input<T, K extends keyof T>({
   field,
   children
 }: {
   field: K;
-  children: (p: InputProps<T[K][number]>) => ReactNode;
+  children: (p: InputProps<T[K]>) => ReactNode;
 }) {
   return <label>{children(useInput<T, K>(field))}</label>;
 };
@@ -204,26 +204,45 @@ Form.Array = function FormArray<T, K extends keyof ArrayFieldsOf<T>>({
     onChange(items.flatMap(transform) as T[K]);
   }
 
-  return children({
-    items: items.map(
-      (item, index): ArrayItemProps<any> => ({
-        errors: errors || [],
-        index,
-        value: item,
-        onChange: value => update(index, value),
-        remove: remove.bind(null, index)
-      })
-    ),
-    push,
-    pop,
-    filter,
-    map,
-    flatMap,
-    slice,
-    splice,
-    update,
-    remove
-  });
+  function unshift(item: any) {
+    insert(0, item);
+  }
+
+  function shift() {
+    slice(1);
+  }
+
+  function insert(index: number, item: any) {
+    splice(index, 0, item);
+  }
+
+  return (
+    <>
+      {children({
+        items: items.map(
+          (item, index): ArrayItemProps<any> => ({
+            errors: errors || [],
+            index,
+            value: item,
+            onChange: value => update(index, value),
+            remove: remove.bind(null, index)
+          })
+        ),
+        push,
+        pop,
+        filter,
+        map,
+        flatMap,
+        slice,
+        splice,
+        update,
+        remove,
+        unshift,
+        shift,
+        insert
+      })}
+    </>
+  );
 };
 
 Form.Errors = function Errors<T>({
