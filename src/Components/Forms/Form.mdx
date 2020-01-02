@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Form } from "./Form.tsx";
 import { StringInput } from "./StringInput.tsx";
 import { Code } from "../Code/Code.tsx";
+import { Button } from "./Button.tsx";
 
 # Form
 
@@ -183,6 +184,45 @@ inner form (acting like a composite input field).
               </div>
             )}
           </Form.Input>
+        </Form>
+        <Code language="json">{JSON.stringify(value, null, 2)}</Code>
+      </div>
+    );
+  }}
+</Playground>
+
+## Arrays
+
+Arrays of data can be managed by the helpful `Form.Array` component, exposing helpers for inserting,
+updating, and deleting items in the array.
+
+<Playground>
+  {() => {
+    const [value, onChange] = useState({ values: [{ field: "I am an item" }] });
+    return (
+      <div>
+        <Form value={value} onChange={onChange}>
+          <Form.Array field="values">
+            {({ push, items }) => (
+              <div>
+                <ul>
+                  {items.map(({ value, onChange, remove, index }) => (
+                    <li key={index}>
+                      <Form value={value} onChange={onChange}>
+                        <Form.Input field="field">
+                          {({value, onChange}) => (
+                            <StringInput value={value} onChange={onChange} />
+                          )}
+                        </Form.Input>
+                      </Form>
+                      <Button onClick={remove}>Remove</Button>
+                    </li>
+                  ))}
+                </ul>
+                <Button onClick={() => push({ field: "" })}>Add</Button>
+              </div>
+            )}
+          </Form.Array>
         </Form>
         <Code language="json">{JSON.stringify(value, null, 2)}</Code>
       </div>

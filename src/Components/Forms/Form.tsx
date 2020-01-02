@@ -4,7 +4,7 @@ import { Label } from "../Typography/TextStyle/Label";
 import { Basic } from "../Typography/TextStyle/Basic";
 
 export type FormErrors<T> =
-  | { [K in keyof T]?: FormErrors<T> }
+  | { [K in keyof T]?: FormErrors<T[K]> }
   | (string | undefined | null)[];
 
 interface FormContextValue<T, P = any> {
@@ -14,15 +14,51 @@ interface FormContextValue<T, P = any> {
   errors: FormErrors<T>;
 }
 
-export interface InputProps<T, K extends keyof T> {
-  value: T[K];
-  onChange(value: T[K]): void;
-  errors: FormErrors<T[K]>;
+export interface InputProps<T> {
+  value: T;
+  onChange(value: T): void;
+  errors: FormErrors<T>;
+}
+
+export interface ArrayProps<A extends any[]> {
+  items: ArrayItemProps<A[number]>[];
+  push(item: A[number]): void;
+  update(index: number, value: A[number]): void;
+  pop(): void;
+  remove(index: number): void;
+  slice(start: number, end?: number): void;
+  splice(index: number, deleteCount: number, ...newItems: A[number][]): void;
+  filter(
+    predicate: (
+      item: A[number],
+      index: number,
+      array: ReadonlyArray<A[number]>
+    ) => boolean
+  ): void;
+  map(
+    transform: (
+      item: A[number],
+      index: number,
+      array: ReadonlyArray<A[number]>
+    ) => A[number]
+  ): void;
+  flatMap(
+    transform: (
+      item: A[number],
+      index: number,
+      array: ReadonlyArray<A[number]>
+    ) => A[number][]
+  ): void;
+}
+
+export interface ArrayItemProps<T> extends InputProps<T> {
+  index: number;
+  remove(): void;
 }
 
 const FormContext = createContext<FormContextValue<any> | null>(null);
 
-export function useInput<T, K extends keyof T>(field: K): InputProps<T, K> {
+export function useInput<T, K extends keyof T>(field: K): InputProps<T[K]> {
   const form: FormContextValue<T, any> | null = useContext(FormContext);
 
   if (form == null) {
@@ -95,14 +131,99 @@ export function Form<T>({
   );
 }
 
-Form.Input = function Input<T, K extends keyof T>({
+Form.Input = function Input<
+  T extends { [x: string]: any | any[] },
+  K extends keyof ArrayFieldsOf<T>
+>({
   field,
   children
 }: {
   field: K;
-  children: (p: InputProps<T, K>) => ReactNode;
+  children: (p: InputProps<T[K][number]>) => ReactNode;
 }) {
   return <label>{children(useInput<T, K>(field))}</label>;
+};
+
+type ArrayFieldsOf<T> = Pick<
+  T,
+  {
+    [P in keyof T]: T[P] extends any[] ? P : never;
+  }[keyof T]
+>;
+
+Form.Array = function FormArray<T, K extends keyof ArrayFieldsOf<T>>({
+  field,
+  children
+}: {
+  field: K;
+  children: (p: ArrayProps<T[K]>) => ReactNode;
+}) {
+  const { value, onChange, errors } = useInput<T, K>(field);
+
+  const items: any[] = value;
+
+  function push(item: any) {
+    onChange([...items, item] as T[K]);
+  }
+
+  function update(index: number, item: any) {
+    splice(index, 1, item);
+  }
+
+  function remove(index: number) {
+    splice(index, 1);
+  }
+
+  function pop() {
+    slice(0, -1);
+  }
+
+  function slice(start: number, end?: number) {
+    onChange(items.slice(start, end) as T[K]);
+  }
+
+  function splice(index: number, deleteCount: number, ...newItems: any[]) {
+    const i = items.slice();
+    i.splice(index, deleteCount, ...newItems);
+    onChange(i as T[K]);
+  }
+
+  function filter(
+    predicate: (item: any, index: number, array: any[]) => boolean
+  ) {
+    onChange(items.filter(predicate) as T[K]);
+  }
+
+  function map(transform: (item: any, index: number, array: any[]) => any) {
+    onChange(items.map(transform) as T[K]);
+  }
+
+  function flatMap(
+    transform: (item: any, index: number, array: any[]) => any[]
+  ) {
+    onChange(items.flatMap(transform) as T[K]);
+  }
+
+  return children({
+    items: items.map(
+      (item, index): ArrayItemProps<any> => ({
+        errors: errors || [],
+        index,
+        value: item,
+        onChange: value => update(index, value),
+        remove: remove.bind(null, index)
+      })
+    ),
+    push,
+    pop,
+    filter,
+    map,
+    flatMap,
+    slice,
+    splice,
+    update,
+    remove
+  });
 };
 
 Form.Errors = function Errors<T>({
