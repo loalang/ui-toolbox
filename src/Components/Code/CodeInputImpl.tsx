@@ -8,7 +8,7 @@ import Misbehave from "misbehave";
 export default function CodeInputImpl({
   value,
   onChange,
-  language = "loa"
+  language
 }: {
   value: string;
   onChange: (value: string) => void;
@@ -18,7 +18,11 @@ export default function CodeInputImpl({
   const editorRef = useRef<Misbehave | null>(null);
   const contentRef = useRef(value);
 
-  const update = useHighlightedElement(elementRef, language);
+  const update =
+    language == null ? () => {} : useHighlightedElement(elementRef, language);
+
+  const onChangeRef = useRef(onChange);
+  onChangeRef.current = onChange;
 
   useLayoutEffect(() => {
     if (elementRef.current != null) {
@@ -27,7 +31,7 @@ export default function CodeInputImpl({
         oninput: content => {
           contentRef.current = content;
           update();
-          onChange(content);
+          onChangeRef.current(content);
         }
       });
       editorRef.current = misbehave;

@@ -7,6 +7,7 @@ import { Playground } from "../../Playground.tsx";
 import { useState } from "react";
 import { Form } from "./Form.tsx";
 import { StringInput } from "./StringInput.tsx";
+import { CodeInput } from "../Code/CodeInput.tsx";
 import { Code } from "../Code/Code.tsx";
 import { Button } from "./Button.tsx";
 
@@ -198,7 +199,7 @@ updating, and deleting items in the array.
 
 <Playground>
   {() => {
-    const [value, onChange] = useState({ values: [{ field: "I am an item" }] });
+    const [value, onChange] = useState({ values: [{ field: "I am an item", code: "I am some code" }] });
     return (
       <div>
         <Form value={value} onChange={onChange}>
@@ -214,12 +215,17 @@ updating, and deleting items in the array.
                             <StringInput value={value} onChange={onChange} />
                           )}
                         </Form.Input>
+                        <Form.Input field="code">
+                          {({value, onChange}) => (
+                            <CodeInput value={value} onChange={onChange} />
+                          )}
+                        </Form.Input>
                       </Form>
                       <Button onClick={remove}>Remove</Button>
                     </li>
                   ))}
                 </ul>
-                <Button onClick={() => push({ field: "" })}>Add</Button>
+                <Button onClick={() => push({ field: "", code: "" })}>Add</Button>
               </div>
             )}
           </Form.Array>
