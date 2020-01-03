@@ -39,8 +39,24 @@ export const Icon = {
   Heart: makeIconComponent("heart", Heart, HeartOutline),
   Sun: makeIconComponent("sun", Sun, SunOutline),
   ChevronRight: makeIconComponent("chevron-right", ChevronRight, ChevronRight),
+  ChevronDown: makeIconComponent(
+    "chevron-down",
+    ChevronRight,
+    ChevronRight,
+    90
+  ),
+  ChevronLeft: makeIconComponent(
+    "chevron-left",
+    ChevronRight,
+    ChevronRight,
+    180
+  ),
+  ChevronUp: makeIconComponent("chevron-up", ChevronRight, ChevronRight, 270),
   Link: makeIconComponent("link", Link2, Link2),
-  ArrowForward: makeIconComponent("arrow-forward", ArrowForward, ArrowForward),
+  ArrowRight: makeIconComponent("arrow-right", ArrowForward, ArrowForward),
+  ArrowDown: makeIconComponent("arrow-down", ArrowForward, ArrowForward, 90),
+  ArrowLeft: makeIconComponent("arrow-left", ArrowForward, ArrowForward, 180),
+  ArrowUp: makeIconComponent("arrow-up", ArrowForward, ArrowForward, 270),
   FileText: makeIconComponent("file-text", FileText, FileTextOutline),
   Person: makeIconComponent("person", Person, PersonOutline),
   Edit: makeIconComponent("edit", Edit, EditOutline),
@@ -57,7 +73,8 @@ export interface IconProps {
 function makeIconComponent(
   name: string,
   FilledComponent: () => ReactElement,
-  OutlineComponent: () => ReactElement
+  OutlineComponent: () => ReactElement,
+  rotation: number = 0
 ): (props: IconProps) => ReactElement {
   function Component({ filled = false }: IconProps) {
     const Component = filled ? FilledComponent : OutlineComponent;
@@ -67,6 +84,7 @@ function makeIconComponent(
         className={css`
           display: inline-block;
           vertical-align: middle;
+          transform: rotate(${rotation}deg);
 
           * {
             fill: currentColor;
