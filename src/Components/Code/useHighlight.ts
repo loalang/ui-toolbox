@@ -1,5 +1,10 @@
 import { KnownLanguage } from "./KnownLanguage";
-import { useDebugValue, useEffect, MutableRefObject } from "react";
+import {
+  useDebugValue,
+  useEffect,
+  useLayoutEffect,
+  MutableRefObject
+} from "react";
 import * as hljsTypes from "highlight.js";
 
 const hljs: typeof hljsTypes = require("highlight.js/lib");
@@ -78,14 +83,14 @@ export function useHighlightedElement(
 
   useDebugValue(language);
 
+  useLayoutEffect(update, []);
+
   function update() {
     if (ref.current != null) {
       ref.current.classList.add(language);
       hljs.highlightBlock(ref.current);
     }
   }
-
-  update();
 
   return update;
 }
