@@ -21,9 +21,12 @@ const {
   EditOutline,
   Code,
   CodeOutline,
-  LogOut
+  LogOut,
+  Plus,
+  Trash2,
+  Trash2Outline
 } = toReactComponent(
-  "./eva/{bulb,bulb-outline,heart,heart-outline,sun,sun-outline,chevron-right,link-2,arrow-forward,file-text-outline,file-text,person,person-outline,edit,edit-outline,code,code-outline,log-out}.svg",
+  "./eva/{bulb,bulb-outline,heart,heart-outline,sun,sun-outline,chevron-right,link-2,arrow-forward,file-text-outline,file-text,person,person-outline,edit,edit-outline,code,code-outline,log-out,plus,trash-2,trash-2-outline}.svg",
   {
     icon: true,
     replaceAttrValues: ["#000000=currentColor"],
@@ -42,7 +45,9 @@ export const Icon = {
   Person: makeIconComponent("person", Person, PersonOutline),
   Edit: makeIconComponent("edit", Edit, EditOutline),
   Code: makeIconComponent("code", Code, CodeOutline),
-  LogOut: makeIconComponent("log-out", LogOut, LogOut)
+  LogOut: makeIconComponent("log-out", LogOut, LogOut),
+  Plus: makeIconComponent("plus", Plus, Plus),
+  Trash: makeIconComponent("trash", Trash2, Trash2Outline)
 };
 
 export interface IconProps {
