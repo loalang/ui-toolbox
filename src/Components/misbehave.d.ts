@@ -1,11 +1,17 @@
 declare module "misbehave" {
-  export interface MisbehaveOptions {
-    oninput?: (textContent: string) => void;
+  class Misbehave {
+    constructor(element: HTMLElement, opts?: Misbehave.MisbehaveOptions);
+
+    destroy(): void;
+
+    update(content: { prefix: string; selected: string; suffix: string }): void;
   }
 
-  export default class Misbehave {
-    constructor(element: HTMLElement, opts?: MisbehaveOptions);
-
-    update(content: string): void;
+  namespace Misbehave {
+    export interface MisbehaveOptions {
+      oninput?: (textContent: string) => void;
+    }
   }
+
+  export = Misbehave;
 }

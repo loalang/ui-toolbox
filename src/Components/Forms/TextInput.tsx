@@ -48,6 +48,7 @@ export function TextInput({
                 position: absolute;
                 white-space: pre-line;
                 top: -99999999px;
+                height: auto !important;
               `
             )}
           >

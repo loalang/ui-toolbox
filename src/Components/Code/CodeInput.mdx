@@ -10,10 +10,28 @@ The input version of the `Code` component, basically.
 import { Playground } from "../../Playground.tsx";
 import { CodeInput } from "./CodeInput.tsx";
 import { useState } from "react";
+import { Button } from "../Forms/Button.tsx";
+
+<Playground>
+  {() => {
+    const [code, setCode] = useState('env print: "Edit Me!".');
+    return <CodeInput value={code} onChange={setCode} />;
+  }}
+</Playground>
+
+The component is reactive, and can have its value set programmatically.
 
 <Playground>
   {() => {
     const [code, setCode] = useState("");
-    return <CodeInput value={code} onChange={setCode} />;
+    function onClick() {
+      setCode("I just set this!");
+    }
+    return (
+      <div>
+        <Button onClick={onClick}>Update Programmatically</Button>
+        <CodeInput value={code} onChange={setCode} />
+      </div>
+    );
   }}
 </Playground>

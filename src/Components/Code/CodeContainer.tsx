@@ -1,6 +1,7 @@
 import React, { ReactNode, forwardRef } from "react";
 import { css, cx } from "emotion";
 
+/** @internal */
 export const CodeContainer = forwardRef<
   HTMLElement,
   {
