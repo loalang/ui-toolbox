@@ -1,5 +1,5 @@
 import { KnownLanguage } from "./KnownLanguage";
-import { useDebugValue, useEffect } from "react";
+import { useDebugValue, useEffect, MutableRefObject } from "react";
 import * as hljsTypes from "highlight.js";
 
 const hljs: typeof hljsTypes = require("highlight.js/lib");
@@ -68,6 +68,26 @@ function useHighlightStyling() {
       }
     };
   });
+}
+
+export function useHighlightedElement(
+  ref: MutableRefObject<HTMLElement | null>,
+  language: KnownLanguage
+): () => void {
+  useHighlightStyling();
+
+  useDebugValue(language);
+
+  function update() {
+    if (ref.current != null) {
+      ref.current.classList.add(language);
+      hljs.highlightBlock(ref.current);
+    }
+  }
+
+  update();
+
+  return update;
 }
 
 export function useHighlight(code: string, language: KnownLanguage): string {
