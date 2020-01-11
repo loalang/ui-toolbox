@@ -60,8 +60,6 @@ export default function CodeInputImpl({
     lines.pop();
   }
 
-  console.log(isDisabled);
-
   return (
     <div
       className={css`
