@@ -84,7 +84,7 @@ export const CodeContainer = forwardRef<
             white-space: pre;
             padding: ${paddingY}px ${paddingX}px;
             box-sizing: border-box;
-            width: ${block ? "100%" : "auto"};
+            min-width: ${block ? "100%" : "auto"};
 
             &:focus {
               outline: 0;
