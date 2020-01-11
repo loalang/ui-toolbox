@@ -4,7 +4,8 @@
   "dependencies": {
     "emotion": "^10.0.23",
     "highlight.js": "^9.17.1",
-    "misbehave": "^0.3.0"
+    "misbehave": "^0.3.0",
+    "resize-observer-polyfill": "^1.5.1"
   },
   "peerDependencies": {
     "react": "^16.12.0"

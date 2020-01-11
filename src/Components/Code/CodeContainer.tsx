@@ -1,5 +1,6 @@
 import React, { ReactNode, forwardRef } from "react";
 import { css, cx } from "emotion";
+import { useMediaQuery } from "../useMediaQuery";
 
 /** @internal */
 export const CodeContainer = forwardRef<
@@ -10,6 +11,7 @@ export const CodeContainer = forwardRef<
     raw?: boolean;
     block?: boolean;
     contentEditable?: boolean;
+    isDisabled?: boolean;
   }
 >(function CodeContainer(
   {
@@ -17,14 +19,17 @@ export const CodeContainer = forwardRef<
     raw = false,
     block: forceBlock = false,
     lineCount,
-    contentEditable
+    contentEditable,
+    isDisabled = false
   },
   ref
 ) {
-  const fontSize = 13;
-  const lineHeight = 17;
-  const paddingY = raw ? 0 : 12;
-  const paddingX = raw ? 0 : 14;
+  const isWide = useMediaQuery("(min-width: 600px)");
+
+  const fontSize = isWide ? 13 : 16;
+  const lineHeight = isWide ? 17 : 20;
+  const paddingY = raw ? 0 : 3;
+  const paddingX = raw ? 0 : 5;
 
   const block = forceBlock || lineCount > 1;
 
@@ -35,8 +40,18 @@ export const CodeContainer = forwardRef<
   `;
 
   const backdrop = css`
-    background: #f9f9ff;
+    background: ${isDisabled ? "#fafafa" : "#fff"};
     border-radius: 4px;
+
+    border: 2px solid transparent;
+    box-shadow: 0 1px 4px #00000010, 0 1px 2px #00000010;
+    caret-color: #1111ff;
+
+    &:focus-within {
+      outline: 0;
+      border-color: #1111ff;
+      box-shadow: 0 1px 3px #1111ff40;
+    }
   `;
 
   if (!block) {

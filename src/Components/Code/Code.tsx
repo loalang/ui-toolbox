@@ -18,7 +18,12 @@ export function Code({
   const lineCount = children.split("\n").length;
 
   return (
-    <CodeContainer raw={raw} block={forceBlock} lineCount={lineCount}>
+    <CodeContainer
+      isDisabled
+      raw={raw}
+      block={forceBlock}
+      lineCount={lineCount}
+    >
       {language == null ? (
         children
       ) : (

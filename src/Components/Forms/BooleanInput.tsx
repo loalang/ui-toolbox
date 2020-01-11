@@ -17,6 +17,7 @@ export function BooleanInput({
       className={css`
         display: flex;
         align-items: center;
+        cursor: ${isDisabled ? "not-allowed" : "pointer"};
       `}
     >
       <input
@@ -43,7 +44,6 @@ export function BooleanInput({
           background: ${value ? "#d9defb" : "#fff"};
           border-radius: 0.7em;
           box-shadow: 0 1px 4px #00000010, 0 1px 2px #00000010;
-          cursor: ${isDisabled ? "not-allowed" : "bar"};
           transition: background 100ms;
 
           &::after {

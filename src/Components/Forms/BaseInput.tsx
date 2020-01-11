@@ -64,7 +64,7 @@ export function BaseInput({
           box-sizing: border-box;
           background: ${isDisabled ? "#fafafa" : "#fff"};
           box-shadow: 0 1px 4px #00000010, 0 1px 2px #00000010;
-          cursor: ${isDisabled ? "not-allowed" : "bar"};
+          cursor: ${isDisabled ? "not-allowed" : "text"};
           caret-color: #1111ff;
 
           &:focus {

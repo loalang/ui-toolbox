@@ -5,14 +5,17 @@ import { KnownLanguage } from "./KnownLanguage";
 import { css } from "emotion";
 import Misbehave from "misbehave";
 
+/** @internal */
 export default function CodeInputImpl({
   value,
   onChange,
-  language
+  language,
+  isDisabled = false
 }: {
   value: string;
   onChange: (value: string) => void;
   language?: KnownLanguage;
+  isDisabled?: boolean;
 }) {
   const elementRef = useRef<HTMLElement | null>(null);
   const editorRef = useRef<Misbehave | null>(null);
@@ -57,17 +60,20 @@ export default function CodeInputImpl({
     lines.pop();
   }
 
+  console.log(isDisabled);
+
   return (
     <div
       className={css`
-        cursor: text;
+        cursor: ${isDisabled ? "not-allowed" : "text"};
       `}
     >
       <CodeContainer
         block
+        isDisabled={isDisabled}
         lineCount={lines.length}
         ref={elementRef}
-        contentEditable
+        contentEditable={!isDisabled}
       />
     </div>
   );
